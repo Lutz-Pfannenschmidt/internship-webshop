@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% if error %}
+            {{ error }}
+        {% else %}
+            {% block title %}TEMPLATE{% endblock %}
+        {% endif %}
+        - Dragonballs In Arabasta
+    </title>
+    <script
+        src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+        crossorigin="anonymous">
+    </script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script defer src="{{ url_for('static', filename='js/base.js') }}"></script>
+    {% block head %}
+        
+    {% endblock %}
+</head>
+<body class="light-theme">
+    <div id="header">
+        <nav>
+            <a href="/" id="home-link">Home</a>
+            <a href="/store" id="store-link">Store</a>
+            <a href="/about" id="about-link">About</a>
+        </nav>
+        <div id="search">
+            <label for="searchbox"><span class="material-symbols-outlined">search</span></label>
+            <form style="display: none;" id="searchform" action="search" method="post" onsubmit="return copyContent()">
+                <input type="text" name="searchbox-hidden" id="searchbox-hidden" style="display: none;">
+            </form>
+            <div id="searchbox" contenteditable="true"></div>
+        </div>
+        <div id="profile">
+            {# Always visible #}
+            {% if "account" in session.keys() %}
+
+            <span id="uname">{{ session["account"] }}</span>
+            <button id="profile-cart"><img src="{{ url_for('static', filename='assets/shopping_cart.svg') }}" alt="Cart" id="cart">(<span id="items_in_cart">{{ cart }}</span>)</button>
+            <img src="https://api.dicebear.com/5.x/pixel-art/svg?seed={{ session['account'] }}" alt="profile" id="profilepic">
+
+            {% else %}
+
+            <span id="uname">Not Logged In</span>
+            <button id="profile-cart"><img src="{{ url_for('static', filename='assets/shopping_cart.svg') }}" alt="Cart" id="cart">(<span id="items_in_cart">{{ cart }}</span>)</button>
+
+            {% endif %}
+            {# Visible on hover #}
+            <div id="dropdown-hidden">
+                <hr>
+                <a href="/cart" class="cart-sidepanel-toggle">View Cart</a><br>
+                <a href="/">do stuff2</a><br>
+                <a href="/">do stuff3</a><br>
+                <hr>
+                {% if "account" in session.keys() %}
+                <a href="/logout" class="highlight">Log Out</a><br>
+                {% else %}
+                <div id="hidden-login">
+                    <form action="/login" method="POST" class="side-form" id="hidden-login-form">
+                        <label for="login-uname">Username</label>
+                        <input type="text" name="inputuname" id="login-uname">
+                        <label for="login-pwd">Password</label>
+                        <input type="password" name="inputpassword" id="login-pwd">
+                        <a href="#" id="hidden-login-submit">Log In</a>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+    <div id="cart-sidepanel" class="">
+        <span class="material-symbols-outlined cart-sidepanel-toggle">close</span>
+        <table id="cart-table">
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Amount*Price</th>
+            </tr>
+        </table>
+        Total Price: <span id="cart-sidepanel-price"></span>
+    </div>
+
+    <div id="content">
+        {% block content %}
+        <h1 id="errormsg">{{ error }}</h1>
+        <style>
+            #errormsg {
+                position: absolute;
+                top: 40vh;
+                left: 0px;
+                text-align: center;
+                width: 100vw;
+                transform: translateY(-50%);
+            }
+        </style>
+        {% endblock %}
+
+    </div>
+
+    <input disabled style="display: none;" type="text" id="items_in_cart_hidden" value="{{ cart }}">
+</body>
+</html>

@@ -1,0 +1,51 @@
+form:not(.side-form) {    
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1.5vh;
+
+    transform: translate(-50%, -50%);
+
+    &#register {
+        grid-template-columns: 1fr 1fr;
+
+        button {
+            grid-column: 1 / span 2;
+        }
+    }
+
+    button,
+    input {
+        min-height: 1vh;
+        border-radius: 10px;
+        border-color: var(--login-border);
+        background-color: var(--login-bg);
+
+        padding: .5vh;
+        font-size: large;
+
+        text-align: center;
+
+        &:focus {
+            outline: none;
+            box-shadow: 1px solid red;
+        }
+
+    }
+
+    font-size: large;
+    text-align: center;
+    color: var(--primary-text);
+
+    button {
+        margin: none;
+        position: relative;
+        width: calc((100% - 1.5vh)/2);
+        left: calc(0.75vh + 50%);
+        transform: translateX(-50%);
+        font-weight: 100;
+        font-size: large;
+    }
+}

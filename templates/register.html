@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+{% endblock %}
+
+{% block content %}
+<form action="/register" method="POST" id="register">
+    <div>
+        <label for="register-mail">E-Mail:</label>
+        <input type="text" name="inputmail" id="register-mail">
+    </div>
+    <div>
+        <label for="register-uname">Username:</label>
+        <input type="text" name="inputuname" id="register-uname">
+    </div>
+    <div>
+        <label for="register-name">Fore Name:</label>
+        <input type="text" name="inputname" id="register-name">
+    </div>
+    <div>
+        <label for="register-last">Last Name:</label>
+        <input type="text" name="inputlastname" id="register-last">
+    </div>
+    <div>
+        <label for="register-pwd">Password:</label>
+        <input type="text" name="inputpassword" id="register-pwd">
+    </div>
+    <div>
+        <label for="register-pwd2">Confirm Password:</label>
+        <input type="text" name="inputpasswordconfirmation" id="register-pwd2"> 
+    </div>
+    <button type="submit">Register and Login</button>
+</form>
+
+{{ msg }}
+{% endblock %}

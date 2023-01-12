@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Ubuntu', sans-serif;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background: url(/static/assets/sunset.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#header {
+
+    width: calc(100vw - 30px);
+    margin: 15px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    z-index: 1;
+
+    #profile,
+    #search,
+    nav {
+        border: 1px solid var(--primary-border);
+        border-radius: 5px;
+        margin: 5px;
+        height: 5vh;
+        background-color: var(--header-bg);
+
+    }
+    
+    #profile {
+            float: right;
+        }
+
+    nav {
+        width: fit-content;
+        
+        a {
+            position: relative;
+            text-decoration: none;
+            color: var(--primary-text);
+            text-align: center;
+            line-height: 5vh;
+            margin: 10px;
+        }
+    }
+
+    #search {
+        flex-grow: 8;
+        position: relative;
+        label {
+            position: absolute;
+            font-size: 3.5vh;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 10px;
+        }
+        div {
+            content: "yes";
+            border: none;
+            width: calc(100% - 40px);
+            height: 5vh;
+            border-radius: inherit;
+            background: transparent;
+            vertical-align: middle;
+            line-height: 5vh;
+            font-size: 2.5vh;
+            
+            padding: 0px;
+            padding-left: 40px;
+            margin: 0;
+        }
+    }
+
+    #profile {
+        flex-grow: 1;
+        position: relative;
+        cursor: pointer;
+        width: 10vw;
+
+        transition: height 100ms linear, width 300ms linear;
+        #uname {
+            text-align: center;
+            line-height: 5vh;
+            margin: 10px;
+        }
+
+        button {
+            position: relative;
+            top: 1.25vh;
+            height: 2.5vh;
+            background: transparent;
+            border: none;
+            padding: 0px;
+
+        }
+
+        #cart {
+            width: 2.5vh;
+            height: 2.5vh;
+
+            transition: transform 250ms ease-in-out;
+            padding: 0;
+        }
+
+        img#profilepic {
+            border: 1px solid var(--primary-border);
+            border-radius: 5%;
+            float: right;
+            height: 3.5vh;
+            margin: .75vh;
+        }
+
+        &:hover {
+            height: auto;
+            #dropdown-hidden {
+                display: inherit;
+                padding-bottom: 5%;
+            }
+        }
+
+        #dropdown-hidden {
+            display: none;
+            width: 100%;
+
+            hr {
+                border: none;
+                border-top: 1px solid var(--primary-border);
+            }
+
+            a {
+                text-decoration: none;
+                color: var(--primary-text);
+                font-size: larger;
+
+                &.highlight {
+                    color: var(--product-card-heading);
+                }
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            a,
+            label,
+            input {
+                margin-left: 5%;
+            }
+
+            form {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+            }
+        }
+    }
+}
+
+#content {
+    position: absolute;
+    top: calc(5vh + 40px);
+    left: 0px;
+}
+
+#cart-sidepanel {
+    background-color: var(--cart-sidepanel-bg);
+    border-left: 1px solid var(--primary-border);
+    position: absolute;
+    top: 0px;
+    left: 100vw;
+    width: 30vw;
+    height: 100vh;
+
+    transition: left 100ms ease-in-out;
+
+    z-index: 1;
+
+    span.cart-sidepanel-toggle {
+        cursor: pointer;
+        margin: 1vh;
+    }
+
+    &.active {
+        left: 70vw;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        td,
+        th {
+            border-left: 1px solid var(--primary-border);
+            padding-left: 1%;
+
+            &:first-of-type {
+                border-left: none;
+            }
+        }
+        
+        th {
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 1px solid var(--primary-border);
+        }
+
+    }
+}

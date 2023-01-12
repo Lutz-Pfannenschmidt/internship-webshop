@@ -1,0 +1,27 @@
+.light-theme {
+    --primary-bg: linear-gradient(338deg, rgba(255,164,27,1) 0%, rgba(255,230,81,1) 100%);
+    --header-bg: #ffffff8c;
+    --primary-text: #16213E;
+    --secondary-text: #cbcbcb;
+    --primary-border: #16213E;
+
+    --product-card-border: #16213E;
+    --product-card-bg: #ffffff8c;
+    --product-card-heading: #E94560;
+    --product-card-desc: rgb(99, 99, 99);
+    --product-cart-hover: #9a9a9a61;
+    --product-cart-border: #E94560;
+    
+    --login-border: #E94560;
+    --login-bg: #ffffff8c;
+    --login-focus: #16213E;
+    
+    --cart-sidepanel-bg: #ffffffd0;
+}
+
+.dark-theme {
+    --primary-bg: rgb(210, 125, 28);
+    --header-bg: rgb(255, 255, 255);
+    --primary-text: rgb(14, 14, 14);
+    --primary-border: rgb(14, 14, 14);
+}

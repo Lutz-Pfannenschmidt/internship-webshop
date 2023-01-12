@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Store
+{% endblock %}
+
+{% block content %}
+
+    <h3 id="result-count">Found {{ items|length }} Results</h3>
+
+    <div id="product-grid">
+        {% for item in items %}
+            <div class="product">
+                <div class="card-grid">
+                    <img src="{{ item.img_url }}" alt="Product image">
+                    <div class="card-text">
+                        <h1>{{ item.name }}</h1>
+                        <p>{{ item.desc }}</p>
+                    </div>
+                    <div class="card-price">
+                        <img class="add-to-cart {{ item.id }}" src="{{ url_for('static', filename='assets/add_to_cart.svg') }}" alt="" srcset="" onclick="add_to_cart('{{ item.id }}');">
+                        <p>{{ item.price/100 }}€</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+{% endblock %}
